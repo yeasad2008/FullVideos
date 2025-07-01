@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>প্রিমিয়াম চ্যানেল</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .post-container {
+      max-width: 500px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .lock-icon {
+      font-size: 70px;
+      color: #FF4444;
+      margin-bottom: 10px;
+    }
+    .premium-text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 25px;
+    }
+    .description {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    #unlockBtn, #watchBtn {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 16px;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    #unlockBtn {
+      background: #FF5722;
+    }
+    #watchBtn {
+      background: #4CAF50;
+      display: none;
+      margin-top: 20px;
+    }
+    .message {
+      margin-top: 20px;
+      color: #2e7d32;
+      font-size: 16px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="post-container">
+  <div class="lock-icon">🔒</div>
+  <div class="premium-text">প্রিমিয়াম চ্যানেল</div>
+  <div class="description">এই চ্যানেলটি আনলক করতে নিচের বাটনে ক্লিক করুন।</div>
+
+  <button id="unlockBtn">🔓 আনলক করুন</button>
+  <div class="message" id="message">✅ আপনি আনলক করেছেন</div>
+  <a id="watchBtn" href="https://t.me/+jwp_9FOB2GA1ZWNl" target="_blank">জয়েন করুন</a>
+</div>
+
+<script>
+  const unlockBtn = document.getElementById('unlockBtn');
+  const message = document.getElementById('message');
+  const watchBtn = document.getElementById('watchBtn');
+
+  const adLinks = [
+    "https://otieu.com/4/9464520",
+    "https://otieu.com/4/9464521",
+    "https://otieu.com/4/9464522",
+    "https://otieu.com/4/9464523",
+    "https://otieu.com/4/9464524",
+    "https://otieu.com/4/9464525"
+  ];
+
+  unlockBtn.addEventListener('click', function() {
+    let count = parseInt(localStorage.getItem('clickCount')) || 0;
+    const nextAdLink = adLinks[count % adLinks.length];
+    localStorage.setItem('videoUnlocked', 'true');
+    localStorage.setItem('clickCount', count + 1);
+    window.location.href = nextAdLink;
+  });
+
+  window.onload = function() {
+    const unlocked = localStorage.getItem('videoUnlocked');
+    if (unlocked === 'true') {
+      unlockBtn.style.display = 'none';
+      message.style.display = 'block';
+      watchBtn.style.display = 'inline-block';
+    }
+  };
+
+  watchBtn.addEventListener('click', function () {
+    setTimeout(() => {
+      localStorage.setItem('videoUnlocked', 'false');
+    }, 500);
+  });
+</script>
+
+</body>
+</html>
